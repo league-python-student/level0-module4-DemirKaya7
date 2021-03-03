@@ -15,14 +15,31 @@ from tkinter import messagebox, simpledialog, Tk
 if __name__ == '__main__':
     # TODO) Ask the user for their score on the FIRST test and store their
     #  score in a variable
+    window = Tk()
+    window.withdraw()
+
+    score1 = simpledialog.askinteger(None, "What is your score on the FIRST test?")
 
     # TODO) Ask the user for their score on the SECOND test and store their
     #  score in a variable
 
-    # TODO) Take the average score of both tests (total score / 2)
+    score2 = simpledialog.askinteger(None, "What is your score on the SECOND test?")
 
+    # TODO) Take the average score of both tests (total score / 2)
+    totalscore = (score1 + score2)/2
+    print(totalscore)
     # TODO) Use if statements to check the average score and print the
     #  corresponding letter grade back to the user. Also, give a different
     #  message according to their grade. Example, for an 'A' grade:
     #  "Wow! You must have studied really hard for those tests!"
-    pass
+
+    if (totalscore >= 90):
+        print("A... Fantastic job!")
+    elif ((totalscore < 90) and totalscore >= 80):
+        print("B... Good job!")
+    elif ((totalscore < 80) and totalscore >= 70):
+        print("C... You barely passed!")
+    elif ((totalscore < 70) and totalscore >= 60):
+        print("D... Study harder next time!")
+    else:
+        print("F... You failed :(")
