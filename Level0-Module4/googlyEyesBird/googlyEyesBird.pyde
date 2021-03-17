@@ -21,22 +21,30 @@ def setup():
     global left_eye_y
     left_eye_y = 160
     global eye_radius
-    eye_radius = 300
+    eye_radius = 150
     global pupil_radius
-    pupil_radius = 50
+    pupil_radius = 25
+    
+    global right_eye_x
+    right_eye_x = 540
+    global right_eye_y
+    right_eye_y = 190
     
 def draw():
     # 4. Draw your image using:
     global face
     global left_eye_x
     global left_eye_y
+    global right_eye_x
+    global right_eye_y
     global eye_radius
     global pupil_radius
     background(face)
 
     # 5. Place a white ellipse over the left eye of your image.
     fill(255, 255, 255)
-    ellipse(250, 160, 300, 300)
+    ellipse(250, 160, 2 * eye_radius, 2 * eye_radius)
+    ellipse(540, 190, 2 * eye_radius, 2 * eye_radius)
     println(str(mouseX) + ' ' + str(mouseY))   
     
     # 6. Now add a pupil (the black part) to the left eye earlier.
@@ -54,19 +62,33 @@ def draw():
         left_eye_x = mouseX
         left_eye_y = mouseY
         fill(0, 0, 0)
-        ellipse(left_eye_x, left_eye_y, pupil_radius, pupil_radius)
-    
+        ellipse(left_eye_x, left_eye_y, 2 * pupil_radius, 2 * pupil_radius)
+        
     # If the mouse is not inside the eye, call the get_eye_position()
     # function:
     else:
-        position = get_eye_position(250, 160, 300, 25)
+        position = get_eye_position(250, 160, eye_radius, pupil_radius)
         left_eye_x = position.x
         left_eye_y = position.y
         fill(0, 0, 0)
-        ellipse(left_eye_x, left_eye_y, pupil_radius, pupil_radius)
+        ellipse(left_eye_x, left_eye_y, 2 * pupil_radius, 2 * pupil_radius)
+        
+    if is_mouse_inside_eye(540, 190, eye_radius, pupil_radius):
+        right_eye_x = mouseX
+        right_eye_y = mouseY
+        fill(0,0,0)
+        ellipse(right_eye_x, right_eye_y, 2 * pupil_radius, 2 * pupil_radius)
+    
+    else:
+        position = get_eye_position(540, 190, eye_radius, pupil_radius)
+        right_eye_x = position.x
+        right_eye_y = position.y
+        fill(0, 0, 0)
+        ellipse(right_eye_x, right_eye_y, 2 * pupil_radius, 2 * pupil_radius)
     
     
     # 9. Repeat the steps above for the right eye and observe the googly eyes!
+    
 
 # ======================= DO NOT MODIFY THE CODE BELOW ==========================
 
